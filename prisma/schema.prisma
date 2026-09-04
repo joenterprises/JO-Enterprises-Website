@@ -14,10 +14,11 @@ model Inquiry {
   email     String?
   product   String?
   quantity  String?
-  category  String?
   message   String?
   status    String   @default("NEW")
   createdAt DateTime @default(now())
+  budget    String?
+  category  String?
 }
 
 model Product {
