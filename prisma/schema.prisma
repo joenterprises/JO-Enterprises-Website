@@ -14,7 +14,7 @@ model Inquiry {
   email     String?
   product   String?
   quantity  String?
-  budget    String?
+  category  String?
   message   String?
   status    String   @default("NEW")
   createdAt DateTime @default(now())

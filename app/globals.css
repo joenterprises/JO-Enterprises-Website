@@ -269,6 +269,12 @@ a{text-decoration:none;color:inherit}.container{width:min(1180px,92%);margin:aut
 .tradersProductCard{overflow:hidden;background:#fff9d9;border:1px solid rgba(111,32,32,.18);border-radius:24px;box-shadow:0 16px 40px rgba(111,32,32,.08)}
 .tradersImagePlaceholder,.tradersCrackerImage{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#ffe9b4,#fff8d7);border-bottom:1px solid rgba(111,32,32,.12);color:var(--tradersMaroon);height:240px;padding:20px}
 .tradersImagePlaceholder span,.tradersCrackerImage span{font-size:20px;font-weight:950}
+/* Keep uploaded product images contained within their intended card layout */
+.tradersImagePlaceholder{overflow:hidden}
+.tradersImagePlaceholder img{width:100%;height:100%;object-fit:contain;display:block;max-width:100%;max-height:100%}
+.tradersCrackerImage{overflow:hidden}
+.tradersCrackerImage img{width:100%;height:100%;object-fit:contain;display:block;max-width:100%;max-height:100%}
+
 .tradersImagePlaceholder small,.tradersCrackerImage small{margin-top:7px;color:var(--tradersGreen);font-size:11px;font-weight:800}
 .tradersProductBody{padding:24px}
 .tradersProductBody h3{margin:0 0 14px;font-size:25px;color:var(--tradersMaroon)}

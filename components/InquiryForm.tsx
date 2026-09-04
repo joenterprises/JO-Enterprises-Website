@@ -18,7 +18,7 @@ function buildWhatsAppMessage(
     `Email: ${data.email || "-"}`,
     `Product / service: ${data.product || "-"}`,
     `Quantity / size: ${data.quantity || "-"}`,
-    `Budget: ${data.budget || "-"}`,
+    `Category: ${data.category || "-"}`,
     `Requirements: ${data.message || "-"}`,
   ].filter(Boolean);
 
@@ -35,13 +35,19 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
     setState("loading");
 
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
+    const attachment = formData.get("attachment");
+    if (attachment instanceof File && attachment.size > 3 * 1024 * 1024) {
+      alert("Please attach an image smaller than 3 MB.");
+      setState("idle");
+      return;
+    }
+    const data = Object.fromEntries(formData);
 
     try {
       const response = await fetch("/api/inquiries", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       const result = await response.json().catch(() => ({}));
@@ -142,16 +148,21 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
           <input name="quantity" placeholder="e.g. 500 copies" />
         </label>
         <label>
-          <span>Budget <em>(optional)</em></span>
-          <select name="budget" defaultValue="">
-            <option value="">Choose a range</option>
-            <option>Under ₹5,000</option>
-            <option>₹5,000–₹15,000</option>
-            <option>₹15,000–₹50,000</option>
-            <option>₹50,000+</option>
+          <span>Category</span>
+          <select name="category" defaultValue="" required>
+            <option value="" disabled>Choose a category</option>
+            <option>Basic (Cost Effective)</option>
+            <option>Premium (Branding must)</option>
+            <option>Elite (Luxorious)</option>
           </select>
         </label>
       </div>
+
+
+      <label>
+        <span>Attach reference image <em>(optional, max 3 MB)</em></span>
+        <input name="attachment" type="file" accept="image/*" />
+      </label>
 
       <label>
         <span>What do you need?</span>

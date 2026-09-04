@@ -3,9 +3,9 @@ import Link from "next/link";
 const whatsappHref = "https://wa.me/917904243134?text=Hello%20JO%20Traders%2C%20I%20would%20like%20to%20place%20an%20order.";
 
 const oils = [
-  { name: "Sesame Oil", sizes: ["1L — Rs. 479", "500ml — Rs. 249"] },
-  { name: "Groundnut Oil", sizes: ["1L — Rs. 379", "500ml — Rs. 199"] },
-  { name: "Coconut Oil", sizes: ["500ml — Rs. 359"] },
+  { name: "Sesame Oil", image: "/images/Sesame.webp", sizes: ["1L — Rs. 479", "500ml — Rs. 249"] },
+  { name: "Groundnut Oil", image: "/images/Groundnut.webp", sizes: ["1L — Rs. 379", "500ml — Rs. 199"] },
+  { name: "Coconut Oil", image: "/images/Coconut.webp", sizes: ["500ml — Rs. 359"] },
 ];
 
 export default function JOTraders() {
@@ -34,8 +34,7 @@ export default function JOTraders() {
             {oils.map((oil) => (
               <article className="tradersProductCard" key={oil.name}>
                 <div className="tradersImagePlaceholder">
-                  <span>Product Image</span>
-                  <small>Image can be updated later</small>
+                  <img src={oil.image} alt={oil.name} />
                 </div>
                 <div className="tradersProductBody">
                   <h3>{oil.name}</h3>
@@ -58,8 +57,7 @@ export default function JOTraders() {
             <p>Crackers — discount 50%, available throughout the year.</p>
           </div>
           <div className="tradersCrackerImage">
-            <span>Product Image</span>
-            <small>Image can be updated later</small>
+            <img src="/images/Crackers.webp" alt="Crackers" />
           </div>
           <Link className="tradersOrderBtn tradersOrderBtnDark" href={whatsappHref} target="_blank" rel="noopener noreferrer">
             Order Now on WhatsApp
