@@ -1,8 +1,9 @@
-import { Facebook, Instagram, Youtube, Phone, MapPin } from "lucide-react";
+import { Instagram, Youtube, Phone, MapPin } from "lucide-react";
+import { FaWhatsapp, FaFacebookF } from "react-icons/fa";
 
 const socialLinks = [
-  { label: "WhatsApp", href: "https://wa.me/919445573457", icon: <span className="footerWhatsApp" aria-hidden="true">⌕</span> },
-  { label: "Facebook", href: "https://www.facebook.com/JOE14621", icon: <Facebook className="footerIcon" /> },
+  { label: "WhatsApp", href: "https://wa.me/919445573457", icon: <FaWhatsapp className="footerIcon" /> },
+  { label: "Facebook", href: "https://www.facebook.com/JOE14621", icon: <FaFacebookF className="footerIcon" /> },
   { label: "Instagram", href: "https://www.instagram.com/joenterprises.am/?hl=en", icon: <Instagram className="footerIcon" /> },
   { label: "Google", href: "https://share.google/gQ7tw6Y193nRxJXTP", icon: <span className="footerGoogle" aria-hidden="true">G</span> },
   { label: "YouTube", href: "https://www.youtube.com/@joenterprises_am", icon: <Youtube className="footerIcon" /> },
@@ -14,7 +15,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footerRow">
         <a href="/" className="footerBrand" aria-label="JO Enterprises home">
-          <img src="/images/logo.png" alt="JO Enterprises" className="footerLogo" />
+          <img src="/images/logo.webp" alt="JO Enterprises" className="footerLogo" />
         </a>
 
         <div className="footerLocation">

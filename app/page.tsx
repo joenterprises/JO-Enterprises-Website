@@ -1,14 +1,7 @@
 import Link from "next/link";
 import PromoCarousel from "@/components/PromoCarousel";
 
-const categories = [
-  { title: "Invitation", sub: "Cards", href: "/print-products?category=Invitation%20Cards" },
-  { title: "Thamboola", sub: "Bags", href: "/print-products?category=Thamboola%20Bags" },
-  { title: "Business", sub: "Essentials", href: "/print-products?category=Business%20Essentials" },
-  { title: "Event/Function", sub: "Essentials", href: "/print-products?category=Event%2FFunction%20Essentials" },
-  { title: "Digital", sub: "Promo", href: "/print-products?category=Digital%20Promo" },
-  { title: "Custom Printing", sub: "Solutions", href: "/print-products?category=Custom%20Printing%20Solutions" },
-];
+
 
 const reasons = [
   {
@@ -94,7 +87,7 @@ export default function Home() {
             <article className="reviewCard reviewSnapCard">
               <div className="reviewCardBadge">★ REAL GOOGLE REVIEW</div>
               <div className="reviewSnapFrame">
-                <img src="/images/google-review-1.png" alt="Google review from sasipriya kamban with photos of JO Enterprises Thamboola bags" />
+                <img src="/images/google-review-1.webp" alt="Google review from sasipriya kamban with photos of JO Enterprises Thamboola bags" />
               </div>
               <a href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
             </article>
@@ -102,7 +95,7 @@ export default function Home() {
             <article className="reviewCard reviewSnapCard">
               <div className="reviewCardBadge">★ REAL GOOGLE REVIEW</div>
               <div className="reviewSnapFrame">
-                <img src="/images/google-review-2.png" alt="Google review from Muniswaran petchimuthu for JO Enterprises" />
+                <img src="/images/google-review-2.webp" alt="Google review from Muniswaran petchimuthu for JO Enterprises" />
               </div>
               <a href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
             </article>
@@ -110,7 +103,7 @@ export default function Home() {
             <article className="reviewCard reviewSnapCard">
               <div className="reviewCardBadge">★ REAL GOOGLE REVIEW</div>
               <div className="reviewSnapFrame">
-                <img src="/images/google-review-3.png" alt="Google review from Senthil Kumar praising JO Enterprises printing design and quality" />
+                <img src="/images/google-review-3.webp" alt="Google review from Senthil Kumar praising JO Enterprises printing design and quality" />
               </div>
               <a href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
             </article>

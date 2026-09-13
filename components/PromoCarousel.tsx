@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const promos = [
-  "/images/promos/calendar-2027.png",
-  "/images/promos/combo-offers.png",
-  "/images/promos/eco-paper-bags.png",
-  "/images/promos/seasonal-promos.png",
+  "/images/promos/calendar-2027.webp",
+  "/images/promos/combo-offers.webp",
+  "/images/promos/eco-paper-bags.webp",
+  "/images/promos/seasonal-promos.webp",
 ];
 
 export default function PromoCarousel() {

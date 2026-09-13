@@ -2,22 +2,22 @@ import {prisma} from "@/lib/prisma";
 import Link from "next/link";
 
 const productImages: Record<string, string> = {
-  "business-cards": "/images/Business Cards.png",
-  "letterheads": "/images/Letter Heads.png",
-  "bill-books": "/images/Bill Books.png",
-  "envelopes": "/images/Envelopes.png",
-  "vouchers-receipts": "/images/Voucher_Receipt.png",
-  files: "/images/Files.png",
-  "wall-posters": "/images/Wall Posters.png",
-  "flyers-brochures": "/images/Flyers_Brochures.png",
-  stickers: "/images/Stickers.png",
-  "box-paper-bags": "/images/Box_Paper Bags.png",
-  calendars: "/images/Calendars.png",
-  "non-woven-bags": "/images/Non Woven Bags.png",
-  "woven-labels": "/images/Woven Labels.png",
-  novelties: "/images/Novelties.png",
-  "graphic-design": "/images/Graphic Design.png",
-  invitations: "/images/Invitations.png",
+  "business-cards": "/images/Business Cards.webp",
+  "letterheads": "/images/Letter Heads.webp",
+  "bill-books": "/images/Bill Books.webp",
+  "envelopes": "/images/Envelopes.webp",
+  "vouchers-receipts": "/images/Voucher_Receipt.webp",
+  files: "/images/Files.webp",
+  "wall-posters": "/images/Wall Posters.webp",
+  "flyers-brochures": "/images/Flyers_Brochures.webp",
+  stickers: "/images/Stickers.webp",
+  "box-paper-bags": "/images/Box_Paper Bags.webp",
+  calendars: "/images/Calendars.webp",
+  "non-woven-bags": "/images/Non Woven Bags.webp",
+  "woven-labels": "/images/Woven Labels.webp",
+  novelties: "/images/Novelties.webp",
+  "graphic-design": "/images/Graphic Design.webp",
+  invitations: "/images/Invitations.webp",
 };
 
 export default async function PrintProducts() {

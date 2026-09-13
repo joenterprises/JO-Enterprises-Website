@@ -288,3 +288,17 @@ a{text-decoration:none;color:inherit}.container{width:min(1180px,92%);margin:aut
 .tradersOrderBtnDark:hover{box-shadow:0 14px 30px rgba(111,32,32,.22)}
 @media(max-width:900px){.tradersProductGrid{grid-template-columns:1fr 1fr}.tradersCrackersInner{grid-template-columns:1fr 260px}.tradersCrackersInner .tradersOrderBtn{grid-column:1 / -1;width:max-content}}
 @media(max-width:560px){.tradersHero{padding:68px 0 58px}.tradersSection{padding:60px 0}.tradersProductGrid{grid-template-columns:1fr}.tradersCrackers{padding:55px 0 70px}.tradersCrackersInner{grid-template-columns:1fr}.tradersCrackersInner .tradersOrderBtn{grid-column:auto;width:100%}.tradersImagePlaceholder{height:220px}.tradersCrackerImage{height:210px}}
+
+/* Mobile navigation */
+.menuToggle{display:none;background:transparent;border:0;padding:8px;cursor:pointer}
+.menuToggle span{display:block;width:25px;height:2px;background:#fff;margin:5px 0;border-radius:2px}
+@media(max-width:850px){
+  .nav{position:sticky}
+  .navin{position:relative}
+  .menuToggle{display:block;margin-left:auto}
+  .links{display:none}
+  .links.open{display:flex;position:absolute;top:100%;left:0;right:0;z-index:100;flex-direction:column;align-items:stretch;gap:0;padding:10px 16px 18px;background:#063f43;border-top:1px solid rgba(217,242,243,.12);box-shadow:0 16px 30px rgba(0,0,0,.18)}
+  .links.open>a{display:block;padding:13px 8px;color:#d9f2f3;border-bottom:1px solid rgba(217,242,243,.09)}
+  .links.open>.whatsappLink{width:auto;height:auto;border-radius:0;color:#d9f2f3}
+  .links.open>.cta{text-align:center;margin-top:12px;padding:13px 18px;border-bottom:0}
+}

@@ -5,7 +5,7 @@ const whatsappHref = "https://wa.me/917904243134?text=Hello%20JO%20Traders%2C%20
 const oils = [
   { name: "Sesame Oil", image: "/images/Sesame.webp", sizes: ["1L — Rs. 479", "500ml — Rs. 249"] },
   { name: "Groundnut Oil", image: "/images/Groundnut.webp", sizes: ["1L — Rs. 379", "500ml — Rs. 199"] },
-  { name: "Coconut Oil", image: "/images/Coconut.webp", sizes: ["500ml — Rs. 359"] },
+  { name: "Coconut Oil", image: "/images/Coconut.webp", sizes: ["500ml — Rs. 255"] },
 ];
 
 export default function JOTraders() {
@@ -14,7 +14,7 @@ export default function JOTraders() {
       <section className="tradersHero">
         <div className="container">
           <span className="tradersEyebrow">JO Traders</span>
-          <h1>Pure choices. Honest prices.</h1>
+          <h1>Pure Choices. Honest Prices.</h1>
           <p>Quality cooking oils and crackers, brought to you with dependable service.</p>
           <Link className="tradersOrderBtn" href={whatsappHref} target="_blank" rel="noopener noreferrer">
             Order Now on WhatsApp
@@ -26,7 +26,7 @@ export default function JOTraders() {
         <div className="container">
           <div className="tradersSectionHead">
             <span className="tradersEyebrow">Cooking Oils</span>
-            <h2>Everyday oils, carefully selected</h2>
+            <h2>Cold-Pressed oil, Naturaly Prepared</h2>
             <p>100ml, 200ml, 5L can and 15L tin available.</p>
           </div>
 
