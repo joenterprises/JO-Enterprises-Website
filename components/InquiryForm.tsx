@@ -2,19 +2,20 @@
 
 import { useState } from "react";
 
-const WHATSAPP = "919445573457";
+const WHATSAPP_NUMBER = "919445573457";
+const MAX_IMAGE_SIZE = 3 * 1024 * 1024;
 
-type SubmitState = "idle" | "loading" | "done" | "fallback" | "error";
+type SubmitState = "idle" | "loading" | "done" | "error";
 
-function buildWhatsAppMessage(
+function buildWhatsAppUrl(
   data: Record<string, FormDataEntryValue>,
   reference?: string
 ) {
   const lines = [
-    "Hello JO Enterprises, I have submitted a quotation enquiry.",
+    "Hello JO Enterprises, I would like to request a quotation.",
     reference ? `Reference: ${reference}` : "",
     `Name: ${data.name || "-"}`,
-    `Phone: ${data.phone || "-"}`,
+    `Phone / WhatsApp: ${data.phone || "-"}`,
     `Email: ${data.email || "-"}`,
     `Product / service: ${data.product || "-"}`,
     `Quantity / size: ${data.quantity || "-"}`,
@@ -22,27 +23,32 @@ function buildWhatsAppMessage(
     `Requirements: ${data.message || "-"}`,
   ].filter(Boolean);
 
-  return encodeURIComponent(lines.join("\n"));
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 export default function InquiryForm({ product = "" }: { product?: string }) {
   const [state, setState] = useState<SubmitState>("idle");
   const [reference, setReference] = useState("");
-  const [fallbackUrl, setFallbackUrl] = useState("");
+  const [whatsappUrl, setWhatsappUrl] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState("loading");
+    setErrorMessage("");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
     const attachment = formData.get("attachment");
-    if (attachment instanceof File && attachment.size > 3 * 1024 * 1024) {
-      alert("Please attach an image smaller than 3 MB.");
-      setState("idle");
+
+    if (attachment instanceof File && attachment.size > MAX_IMAGE_SIZE) {
+      setErrorMessage("Please attach an image smaller than 3 MB.");
+      setState("error");
       return;
     }
-    const data = Object.fromEntries(formData);
+
+    const data = Object.fromEntries(formData.entries());
+    const blankWindow = window.open("", "_blank");
 
     try {
       const response = await fetch("/api/inquiries", {
@@ -51,30 +57,34 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
       });
 
       const result = await response.json().catch(() => ({}));
+      const ref = result.reference || "";
+      const url = buildWhatsAppUrl(data, ref);
 
-      if (response.ok) {
-        const ref = result.reference || "";
-        setReference(ref);
-        form.reset();
+      setReference(ref);
+      setWhatsappUrl(url);
 
-        // If WhatsApp Cloud API is configured, the server has already sent
-        // the enquiry to 9445573457. Do not open another WhatsApp window.
-        if (result.whatsappSent) {
-          setState("done");
-          return;
-        }
-
-        // Otherwise offer the user a pre-filled WhatsApp message.
-        setFallbackUrl(
-          `https://wa.me/${WHATSAPP}?text=${buildWhatsAppMessage(data, ref)}`
-        );
-        setState("fallback");
-        return;
+      // The new tab is opened synchronously from the button click, so
+      // browsers are much less likely to block it as a popup.
+      if (blankWindow && !blankWindow.closed) {
+        blankWindow.location.href = url;
+      } else {
+        window.location.href = url;
       }
 
-      throw new Error(result.error || "Unable to save enquiry");
+      if (!response.ok) {
+        throw new Error(result.error || "The enquiry could not be saved.");
+      }
+
+      form.reset();
+      setState("done");
     } catch (error) {
       console.error(error);
+      if (blankWindow && !blankWindow.closed) blankWindow.close();
+      setErrorMessage(
+        error instanceof Error
+          ? `${error.message} Your WhatsApp message is ready below.`
+          : "We could not save the enquiry. Your WhatsApp message is ready below."
+      );
       setState("error");
     }
   }
@@ -83,36 +93,45 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
     <form className="form quoteForm" onSubmit={submit}>
       {state === "done" && (
         <div className="notice success" role="status">
-          <strong>Thank you. Your enquiry has been received.</strong>
-          <br />
-          {reference && <>Reference: {reference}. </>}
-          We&apos;ll contact you shortly.
-        </div>
-      )}
-
-      {state === "fallback" && (
-        <div className="notice fallback" role="status">
           <strong>Your enquiry has been received.</strong>
           <br />
           {reference && <>Reference: {reference}. </>}
-          For the fastest response, please continue on WhatsApp and tap Send.
-          <br />
-          <a
-            className="btn primary"
-            href={fallbackUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-block", marginTop: "12px" }}
-          >
-            Continue on WhatsApp
-          </a>
+          WhatsApp should now be open with your quotation message. Please tap
+          <strong> Send</strong> in WhatsApp.
+          {whatsappUrl && (
+            <>
+              <br />
+              <a
+                className="btn primary"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "inline-block", marginTop: "12px" }}
+              >
+                Continue on WhatsApp
+              </a>
+            </>
+          )}
         </div>
       )}
 
       {state === "error" && (
         <div className="notice fallback" role="alert">
-          We couldn&apos;t save the enquiry. Please try again or contact us
-          directly on WhatsApp or phone.
+          <strong>{errorMessage}</strong>
+          {whatsappUrl && (
+            <>
+              <br />
+              <a
+                className="btn primary"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "inline-block", marginTop: "12px" }}
+              >
+                Open WhatsApp
+              </a>
+            </>
+          )}
         </div>
       )}
 
@@ -123,7 +142,12 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
         </label>
         <label>
           <span>Phone / WhatsApp</span>
-          <input name="phone" placeholder="Your number" required />
+          <input
+            name="phone"
+            placeholder="Your number"
+            inputMode="tel"
+            required
+          />
         </label>
       </div>
 
@@ -150,14 +174,13 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
         <label>
           <span>Category</span>
           <select name="category" defaultValue="" required>
-            <option value="" disabled>Choose a category</option>
+            <option value="" disabled>Choose the option</option>
             <option>Basic (Cost Effective)</option>
-            <option>Premium (Branding must)</option>
-            <option>Elite (Luxorious)</option>
+            <option>Premium (Quality Matters)</option>
+            <option>Elite (Luxourious)</option>
           </select>
         </label>
       </div>
-
 
       <label>
         <span>Attach reference image <em>(optional, max 3 MB)</em></span>
@@ -177,11 +200,12 @@ export default function InquiryForm({ product = "" }: { product?: string }) {
         type="submit"
         disabled={state === "loading"}
       >
-        {state === "loading" ? "Sending…" : "Send Enquiry"}
+        {state === "loading" ? "Sending…" : "Send Enquiry & Open WhatsApp"}
       </button>
 
       <p className="formHint">
-        Your details are used only to respond to this enquiry.
+        Your enquiry is saved to our CRM and a WhatsApp message is prepared for
+        you to send to JO Enterprises.
       </p>
     </form>
   );

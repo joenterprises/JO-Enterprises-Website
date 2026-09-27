@@ -78,7 +78,7 @@ export default function Home() {
               <h2>What our customers say</h2>
               <p>Genuine Google reviews from customers who chose JO Enterprises.</p>
             </div>
-            <a className="googleReviewBtn" href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer">
+            <a className="googleReviewBtn" href="https://www.google.com/maps/place/JO+Enterprises/@9.3954569,77.4864038,17z/data=!4m8!3m7!1s0x3b06eb3b87d416e3:0x64be725615fcbaf2!8m2!3d9.3954569!4d77.4889787!9m1!1b1!16s%2Fg%2F11nxp610_2" target="_blank" rel="noreferrer">
               <span className="googleG">G</span> View all Google reviews ↗
             </a>
           </div>
@@ -89,7 +89,7 @@ export default function Home() {
               <div className="reviewSnapFrame">
                 <img src="/images/google-review-1.webp" alt="Google review from sasipriya kamban with photos of JO Enterprises Thamboola bags" />
               </div>
-              <a href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
+              <a href="https://www.google.com/maps/place/JO+Enterprises/@9.3954569,77.4864038,17z/data=!4m8!3m7!1s0x3b06eb3b87d416e3:0x64be725615fcbaf2!8m2!3d9.3954569!4d77.4889787!9m1!1b1!16s%2Fg%2F11nxp610_2" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
             </article>
 
             <article className="reviewCard reviewSnapCard">
@@ -97,7 +97,7 @@ export default function Home() {
               <div className="reviewSnapFrame">
                 <img src="/images/google-review-2.webp" alt="Google review from Muniswaran petchimuthu for JO Enterprises" />
               </div>
-              <a href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
+              <a href="https://www.google.com/maps/place/JO+Enterprises/@9.3954569,77.4864038,17z/data=!4m8!3m7!1s0x3b06eb3b87d416e3:0x64be725615fcbaf2!8m2!3d9.3954569!4d77.4889787!9m1!1b1!16s%2Fg%2F11nxp610_2" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
             </article>
 
             <article className="reviewCard reviewSnapCard">
@@ -105,7 +105,7 @@ export default function Home() {
               <div className="reviewSnapFrame">
                 <img src="/images/google-review-3.webp" alt="Google review from Senthil Kumar praising JO Enterprises printing design and quality" />
               </div>
-              <a href="https://www.google.com/search?q=joenterprise+google+review" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
+              <a href="https://www.google.com/maps/place/JO+Enterprises/@9.3954569,77.4864038,17z/data=!4m8!3m7!1s0x3b06eb3b87d416e3:0x64be725615fcbaf2!8m2!3d9.3954569!4d77.4889787!9m1!1b1!16s%2Fg%2F11nxp610_2" target="_blank" rel="noreferrer" className="reviewLink">View on Google ↗</a>
             </article>
           </div>
         </div>
